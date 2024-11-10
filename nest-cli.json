@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/nest-todo/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/nest-todo/tsconfig.json"
+  },
+  "projects": {
+    "shared": {
+      "type": "library",
+      "root": "libs/shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared/tsconfig.lib.json"
+      }
+    },
+    "nest-todo": {
+      "type": "application",
+      "root": "apps/nest-todo",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-todo/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-todo/tsconfig.json"
+      }
+    }
+  },
+  "monorepo": true,
+  "root": "apps/nest-todo"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "nest-todo",
+  "scripts": {
+    "migration:create": "npx mikro-orm migration:create --config=./mikro-orm.config.ts",
+    "migration:up": "npx mikro-orm migration:up --config=./mikro-orm.config.ts",
+    "migration:down": "npx mikro-orm migration:down --config=./mikro-orm.config.ts"
+  },
+  "dependencies": {
+    "@mikro-orm/cli": "^6.3.5"
+  }
+}

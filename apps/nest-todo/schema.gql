@@ -1,0 +1,106 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""CreateUserDto payload"""
+input CreateUserDto {
+  email: String!
+  firstName: String!
+  lastName: String!
+  todos: [TodoInput!]
+}
+
+"""Edit user payload"""
+input EditUserDto {
+  createdAt: String!
+  createdBy: String
+  deletedAt: String
+  email: String!
+  firstName: String!
+  lastName: String!
+  todos: [TodoInput!]
+}
+
+type Mutation {
+  createUser(CreateUserDto: CreateUserDto!): User!
+  editUser(EditUserDto: EditUserDto!): User!
+}
+
+type Query {
+  getUser: User!
+}
+
+"""Todo Status Entity"""
+type Status {
+  color: String!
+  createdAt: String!
+  createdBy: String
+  deletedAt: String
+  id: ID!
+  isDeleted: Boolean!
+  name: String!
+  updatedAt: String!
+}
+
+input StatusInput {
+  color: String!
+  createdAt: String!
+  createdBy: String
+  deletedAt: String
+  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  isDeleted: Boolean!
+  name: String!
+  updatedAt: String!
+}
+
+type Todo {
+  assignee: User!
+  createdAt: String!
+  createdBy: String
+  currentStatus: Status!
+  deletedAt: String
+  description: String!
+  id: ID!
+  isDeleted: Boolean!
+  title: String!
+  updatedAt: String!
+}
+
+input TodoInput {
+  assignee: UserInput!
+  createdAt: String!
+  createdBy: String
+  currentStatus: StatusInput!
+  deletedAt: String
+  description: String!
+  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  isDeleted: Boolean!
+  title: String!
+  updatedAt: String!
+}
+
+type User {
+  createdAt: String!
+  createdBy: String
+  deletedAt: String
+  email: String!
+  firstName: String!
+  id: ID!
+  isDeleted: Boolean!
+  lastName: String!
+  todos: [Todo!]
+  updatedAt: String!
+}
+
+input UserInput {
+  createdAt: String!
+  createdBy: String
+  deletedAt: String
+  email: String!
+  firstName: String!
+  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  isDeleted: Boolean!
+  lastName: String!
+  todos: [TodoInput!]
+  updatedAt: String!
+}
