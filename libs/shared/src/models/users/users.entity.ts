@@ -1,5 +1,4 @@
-import { Entity, Property, OneToMany } from '@mikro-orm/core';
-
+import { Entity, Property, OneToMany, Collection } from '@mikro-orm/core';
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { BaseEntity } from '../base.entity';
 import { Todo } from '../todo/todo.entity';
@@ -35,5 +34,5 @@ export class User extends BaseEntity {
   @Field(() => [Todo], {
     nullable: true,
   })
-  todos?: Todo[];
+  todos = new Collection<Todo>(this);
 }

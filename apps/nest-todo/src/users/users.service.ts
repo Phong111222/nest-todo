@@ -18,4 +18,17 @@ export class UsersService {
       ...editUserDto,
     });
   }
+
+  findUser(id: string) {
+    return this.usersRepository.findOne(
+      {
+        id,
+      },
+      //{ populate: ['todos'] },
+    );
+  }
+
+  getUsers() {
+    return this.usersRepository.findMany();
+  }
 }

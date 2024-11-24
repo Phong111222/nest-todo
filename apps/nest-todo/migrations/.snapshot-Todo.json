@@ -23,7 +23,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "updated_at": {
@@ -34,7 +34,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "deleted_at": {
@@ -126,7 +126,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "updated_at": {
@@ -137,7 +137,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "deleted_at": {
@@ -239,7 +239,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "updated_at": {
@@ -250,7 +250,7 @@
           "primary": false,
           "nullable": false,
           "length": 6,
-          "default": "'Tue Aug 20 2024'",
+          "default": "'Sun Nov 10 2024'",
           "mappedType": "datetime"
         },
         "deleted_at": {

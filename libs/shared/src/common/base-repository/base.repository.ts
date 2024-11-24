@@ -1,15 +1,18 @@
 import {
+  AutoPath,
   EntityData,
   EntityName,
   EntityRepository,
   FilterQuery,
+  FindOneOptions,
+  Loaded,
 } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Type } from '@nestjs/common';
 import { IBaseRepository } from './Ibase.repository';
 import { BaseEntity } from '@app/shared/models/base.entity';
 
-export function BaseRepository<E extends BaseEntity>(
+export function BaseRepository<E extends BaseEntity = BaseEntity>(
   entity: EntityName<E>,
 ): Type<IBaseRepository<E>> {
   class BaseRepository implements IBaseRepository<E> {
@@ -25,13 +28,17 @@ export function BaseRepository<E extends BaseEntity>(
     update(entity: E | EntityData<E>) {
       return this.repo.upsert(entity);
     }
-    findMany(filter: FilterQuery<E>) {
+    findMany(filter?: FilterQuery<E>) {
       return this.repo.find(filter);
     }
 
-    findOne(filter: FilterQuery<E>) {
-      return this.repo.findOneOrFail(filter);
+    findOne(
+      where: FilterQuery<E>,
+      options?: FindOneOptions<E, string, string, string>,
+    ): Promise<Loaded<E, string, string, string>> {
+      return this.repo.findOne(where, options);
     }
+
     async deleteById(id: string) {
       const entity = await this.findOne({
         $eq: {
@@ -39,7 +46,7 @@ export function BaseRepository<E extends BaseEntity>(
         } as any,
       });
 
-      entity.isDeleted = true;
+      (entity as unknown as { isDeleted: boolean }).isDeleted = true;
 
       return this.repo.upsert(entity);
     }

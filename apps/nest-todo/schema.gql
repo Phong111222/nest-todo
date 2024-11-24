@@ -7,7 +7,7 @@ input CreateUserDto {
   email: String!
   firstName: String!
   lastName: String!
-  todos: [TodoInput!]
+  todos: [TodoInput!] = []
 }
 
 """Edit user payload"""
@@ -18,7 +18,7 @@ input EditUserDto {
   email: String!
   firstName: String!
   lastName: String!
-  todos: [TodoInput!]
+  todos: [TodoInput!] = []
 }
 
 type Mutation {
@@ -26,8 +26,17 @@ type Mutation {
   editUser(EditUserDto: EditUserDto!): User!
 }
 
+"""PageInfo"""
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor: String
+}
+
 type Query {
-  getUser: User!
+  user(id: String!): User!
+  users(after: String, before: String, first: Float, last: Float): UserConnection!
 }
 
 """Todo Status Entity"""
@@ -47,7 +56,7 @@ input StatusInput {
   createdAt: String!
   createdBy: String
   deletedAt: String
-  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
   isDeleted: Boolean!
   name: String!
   updatedAt: String!
@@ -73,7 +82,7 @@ input TodoInput {
   currentStatus: StatusInput!
   deletedAt: String
   description: String!
-  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
   isDeleted: Boolean!
   title: String!
   updatedAt: String!
@@ -92,15 +101,28 @@ type User {
   updatedAt: String!
 }
 
+"""User connection"""
+type UserConnection {
+  """$List edges of User"""
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+}
+
+"""UserEdge"""
+type UserEdge {
+  cursor: String!
+  node: User!
+}
+
 input UserInput {
   createdAt: String!
   createdBy: String
   deletedAt: String
   email: String!
   firstName: String!
-  id: ID! = "d11dac61-f1ec-4073-8f35-3033af21175c"
+  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
   isDeleted: Boolean!
   lastName: String!
-  todos: [TodoInput!]
+  todos: [TodoInput!] = []
   updatedAt: String!
 }
