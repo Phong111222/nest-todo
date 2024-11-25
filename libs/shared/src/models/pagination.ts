@@ -1,5 +1,8 @@
-import { Type } from '@nestjs/common';
 import { Field, ObjectType, ArgsType } from '@nestjs/graphql';
+
+interface ClassConstructor<T extends any> {
+  new (...params: any[]): T;
+}
 
 @ObjectType({ description: 'PageInfo' })
 class PageInfo {
@@ -30,7 +33,7 @@ class Edge {
   cursor: string;
 }
 
-export const createEdge = <T extends Type<any>>(entity: T) => {
+export const createEdge = <T>(entity: ClassConstructor<T>) => {
   @ObjectType({
     description: `${entity.name} edge`,
   })
@@ -60,8 +63,9 @@ class BaseConnection {
   pageInfo: PageInfo;
 }
 
-export const createGplConnection = <T extends Type<any>>(entity: T) => {
+export const createGplConnection = <T>(entity: ClassConstructor<T>) => {
   const edgeClassName = `${entity.name}Edge`;
+
   @ObjectType({
     description: edgeClassName,
   })

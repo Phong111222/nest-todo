@@ -56,7 +56,7 @@ input StatusInput {
   createdAt: String!
   createdBy: String
   deletedAt: String
-  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
+  id: ID! = "2df96cc8-0293-4207-a9ea-2d246548f680"
   isDeleted: Boolean!
   name: String!
   updatedAt: String!
@@ -82,7 +82,7 @@ input TodoInput {
   currentStatus: StatusInput!
   deletedAt: String
   description: String!
-  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
+  id: ID! = "2df96cc8-0293-4207-a9ea-2d246548f680"
   isDeleted: Boolean!
   title: String!
   updatedAt: String!
@@ -120,7 +120,7 @@ input UserInput {
   deletedAt: String
   email: String!
   firstName: String!
-  id: ID! = "fbd03326-533b-442b-a418-26a498cb18b3"
+  id: ID! = "2df96cc8-0293-4207-a9ea-2d246548f680"
   isDeleted: Boolean!
   lastName: String!
   todos: [TodoInput!] = []

@@ -35,4 +35,9 @@ export class User extends BaseEntity {
     nullable: true,
   })
   todos = new Collection<Todo>(this);
+
+  constructor(params: User) {
+    super();
+    Object.assign(this, params);
+  }
 }

@@ -1,15 +1,11 @@
-import { Args, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { EditUserDto } from './dto/edit-user.dto';
 import { User } from '@app/shared/models/users/users.entity';
-import {
-  createGplConnection,
-  PaginationArgument,
-} from '@app/shared/models/pagination';
-
-@ObjectType({ description: 'User connection' })
-class UserConnection extends createGplConnection(User) {}
+import { PaginationArgument } from '@app/shared/models/pagination';
+import { UserConnection } from './dto/users.connection';
+import { UserEdge } from './dto/users.edge';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -22,9 +18,22 @@ export class UsersResolver {
   }
 
   @Query(() => UserConnection)
-  async users(@Args() userArgs: PaginationArgument) {
+  async users(@Args() userArgs: PaginationArgument): Promise<UserConnection> {
     const users = await this.usersService.getUsers();
-    return users;
+    return new UserConnection({
+      edges: users.map((ele) => {
+        return new UserEdge({
+          cursor: ele.id,
+          node: new User(ele),
+        });
+      }),
+      pageInfo: {
+        endCursor: users[users.length - 1].id,
+        startCursor: users[0].id,
+        hasNextPage: true,
+        hasPreviousPage: true,
+      },
+    });
   }
 
   @Mutation(() => User)
